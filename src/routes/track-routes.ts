@@ -7,5 +7,6 @@ const trackController = new TrackController();
 
 router.use(requireAuth);
 router.get("/tracks", (req, res) => trackController.getTracks(req, res));
+router.post("/tracks", (req, res) => trackController.createNewTrack(req, res));
 
 export default router;
