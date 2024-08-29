@@ -1,7 +1,8 @@
 import { Response, NextFunction } from "express";
 import { CustomRequest } from "customTypes";
 import jwt from "jsonwebtoken";
-import { User } from "../model/Users"; // Ensure this path is correct
+import { User } from "../model/Users";
+import * as process from "node:process"; // Ensure this path is correct
 
 export const requireAuth = async (
   req: CustomRequest,
@@ -14,7 +15,7 @@ export const requireAuth = async (
   }
 
   const token = authorization.replace("Bearer ", "").trim();
-  jwt.verify(token, "MY_SECRET_KEY", async (err, decoded) => {
+  jwt.verify(token, process.env.JWT_SECRET as string, async (err, decoded) => {
     if (err) {
       return res.status(401).send({ error: "You must be logged in." });
     }
