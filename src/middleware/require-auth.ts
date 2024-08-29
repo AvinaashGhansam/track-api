@@ -2,7 +2,7 @@ import { Response, NextFunction } from "express";
 import { CustomRequest } from "customTypes";
 import jwt from "jsonwebtoken";
 import { User } from "../model/Users";
-import * as process from "node:process"; // Ensure this path is correct
+import * as process from "node:process";
 
 export const requireAuth = async (
   req: CustomRequest,
